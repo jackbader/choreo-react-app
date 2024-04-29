@@ -3,6 +3,10 @@ import './App.css';
 import Cookies from 'js-cookie';
 
 function App() {
+  const apiUrl = window?.configs?.apiUrl ? window.configs.apiUrl : '/';
+
+  console.log('apiUrl', apiUrl);
+
   return (
     <div className="App">
       <header className="App-header">

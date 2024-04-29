@@ -1,17 +1,5 @@
-# React Single Page Application
+# Start authentication proxy locally
 
-This is a sample React application that can be used to demonstrate WebApp deployments of Choreo.
-
-## Deploy In Choreo
-
-- Fork this repository.
-- Please refer to the Choreo documentation under the [Develop a Web Application](https://wso2.com/choreo/docs/develop-components/develop-a-web-application/) section to learn how to deploy the application.
-
-### Use the following configuration when creating this component in Choreo:
-
-- Build Pack: **React**
-- Project Directory: `react-single-page-app`
-- Build Command: `npm run build`
-- Build output directory: `build`
-- Node Version: `18`
-
+```
+npx @choreo/proxy -p 3000 -f 3001 -u https://bbfbad3b-4050-4e29-adf9-856983a752fa.e1-us-cdp-2.choreoapps.dev
+```
