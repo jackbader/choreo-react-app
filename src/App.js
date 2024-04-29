@@ -25,7 +25,7 @@ function App() {
             const data = await response.json();
             console.log('data', data);
           }}>
-          Test Auth
+          Test Auth Button
         </button>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
