@@ -15,7 +15,7 @@ function App() {
 
   const getBooks = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/reading-list/books`);
+      const response = await axios.get(`${apiUrl}/books`);
       console.log('response.data', response.data);
       const booksArray = [];
       for (const key in response.data) {
@@ -29,7 +29,7 @@ function App() {
 
   const createBook = async () => {
     try {
-      const response = await axios.post(`${apiUrl}/reading-list/books`, {
+      const response = await axios.post(`${apiUrl}/books`, {
         title: 'Book Title',
         author: 'Book Author',
         status: 'to_read'
