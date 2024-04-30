@@ -30,3 +30,23 @@ button {
   display: flex;
   flex-wrap: wrap;
 }
+
+.book-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-form button {
+  width: fit-content;
+}
+
+.book-form label {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-form input {
+  width: fit-content;
+}

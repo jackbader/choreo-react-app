@@ -5,6 +5,9 @@ import Cookies from 'js-cookie';
 function App() {
   const [books, setBooks] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [status, setStatus] = useState('');
 
   const apiUrl = window?.configs?.apiUrl ? window.configs.apiUrl : 'http://localhost:8080';
 
@@ -40,6 +43,18 @@ function App() {
     }
   };
 
+  const deleteBook = async (id) => {
+    console.log('delete book id', id);
+    // try {
+    //   const response = await axios.delete(`${apiUrl}/reading-list/books/${id}`);
+    //   console.log('response', response);
+    //   // remove the book from the list
+    //   setBooks(books.filter((book) => book.id !== id));
+    // } catch (e) {
+    //   console.log('error', e);
+    // }
+  };
+
   const getUser = async () => {
     // Read userinfo cookie value.
     try {
@@ -49,6 +64,11 @@ function App() {
     } catch (e) {
       console.log('error', e);
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createBook({ title, author, status });
   };
 
   useEffect(() => {
@@ -80,27 +100,32 @@ function App() {
       </header>
 
       <div className="main">
-        <button
-          onClick={async () => {
-            const response = await fetch('/auth/userinfo');
-            console.log('response', response);
-            const data = await response.json();
-            console.log('data', data);
-          }}>
-          Test Auth Button
-        </button>
-
-        <button onClick={createBook}>Create Book</button>
+        <form className="book-form" onSubmit={handleSubmit}>
+          <label>
+            Title:
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+          </label>
+          <label>
+            Author:
+            <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} />
+          </label>
+          <label>
+            Status:
+            <input type="text" value={status} onChange={(e) => setStatus(e.target.value)} />
+          </label>
+          <button type="submit">Create Book</button>
+        </form>
 
         <h2>Books</h2>
 
         {books.length > 0 && (
           <div className="books-container">
             {books.map((book) => (
-              <div className="book" key={book.uuid}>
-                <p>{book.title}</p>
-                <p>{book.author}</p>
-                <p>{book.status}</p>
+              <div className="book" key={book.id}>
+                <p>Title: {book.title}</p>
+                <p>Author: {book.author}</p>
+                <p>Status: {book.status}</p>
+                <button onClick={() => deleteBook(book.id)}></button>
               </div>
             ))}
           </div>
